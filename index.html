@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10091b">
+<meta name="description" content="Thanator AI - asistente gratuito para creadores de TikTok Shop">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>Thanator AI</title>
+<style>
+:root{color-scheme:dark;--bg:#0d0815;--panel:#171023;--panel2:#211531;--purple:#9b5cff;--purple2:#6e35c9;--text:#f7f1ff;--muted:#b9a9ca;--line:#38264e;--green:#48d597}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#291543 0,transparent 35%),var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:22px 18px 14px;display:flex;align-items:center;gap:12px;position:sticky;top:0;background:#10091bee;backdrop-filter:blur(12px);z-index:5;border-bottom:1px solid var(--line)}
+.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#b47aff,#6227bc);display:grid;place-items:center;font-size:24px;font-weight:900;box-shadow:0 8px 25px #6d35bb55}
+h1{font-size:19px;letter-spacing:1.5px;margin:0}header small{color:#c5a7ef;font-size:10px;letter-spacing:1.4px}
+main{max-width:760px;margin:auto;padding:18px 15px 90px}.hero{padding:20px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(140deg,#241337,#151020 70%);margin-bottom:16px}
+.hero h2{font-size:23px;margin:0 0 6px}.hero p{color:var(--muted);margin:0;line-height:1.5}
+.tabs{display:flex;gap:8px;overflow:auto;margin:16px 0}.tab{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:10px 14px;border-radius:12px;font-weight:650}.tab.active{background:#3b2160;border-color:#9b5cff;color:white}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 7px}input,textarea,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#0f0a18;color:var(--text);padding:12px;font:inherit;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--purple)}textarea{min-height:100px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{border:0;border-radius:13px;padding:13px 15px;font-weight:800;font-size:14px;background:linear-gradient(135deg,#a66aff,#7138c6);color:white;width:100%;margin-top:14px}.btn.secondary{background:#2b1c3e;border:1px solid var(--line)}.btn.danger{background:#51243d}.hint{font-size:12px;color:var(--muted);line-height:1.5}
+.result{white-space:pre-wrap;line-height:1.55;color:#eee4fa}.script{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;background:#120c1c}.script h3{font-size:14px;margin:0 0 8px;color:#d3b6ff}.script p{white-space:pre-wrap;line-height:1.55;margin:0}.script-actions{display:flex;gap:8px}.script-actions button{flex:1}
+.pill{display:inline-block;background:#2c1d40;color:#d8c1f6;border-radius:99px;padding:5px 9px;font-size:11px}
+.empty{text-align:center;padding:30px 12px;color:var(--muted)}.hidden{display:none!important}.photo{max-width:100%;max-height:180px;display:block;margin-top:10px;border-radius:12px}
+footer{text-align:center;color:#88799a;font-size:11px;padding:20px}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.hero h2{font-size:21px}}
+</style>
+</head>
+<body>
+<header><div class="logo">T</div><div><h1>THANATOR AI</h1><small>ASISTENTE PARA TIKTOK SHOP</small></div></header>
+<main>
+<section class="hero"><span class="pill">VERSIÓN 1.0 · GRATUITA</span><h2>Tu contenido empieza aquí.</h2><p>Crea ideas de venta, organiza tus guiones y prepara tus publicaciones desde un solo lugar.</p></section>
+<nav class="tabs">
+<button class="tab active" data-tab="crear">✍️ Crear guiones</button>
+<button class="tab" data-tab="publicar"># Títulos y hashtags</button>
+<button class="tab" data-tab="biblioteca">📁 Biblioteca</button>
+</nav>
+<section id="crear" class="pane">
+<div class="card">
+<h2>Generador de 10 guiones</h2>
+<p class="hint">Añade datos reales del producto. Esta versión genera borradores locales con distintos enfoques; no inventa especificaciones.</p>
+<label>Nombre del producto</label><input id="product" placeholder="Ej. Soporte magnético para celular">
+<label>Características y beneficios confirmados</label><textarea id="details" placeholder="Ej. Se fija al tablero, tiene giro ajustable, incluye adhesivo..."></textarea>
+<div class="grid">
+<div><label>Duración aproximada</label><select id="duration"><option>30 segundos</option><option selected>40 segundos</option><option>60 segundos</option><option>90 segundos</option></select></div>
+<div><label>Estilo principal</label><select id="style"><option>Variado</option><option>Persuasivo</option><option>Natural</option><option>Demostrativo</option><option>Problema y solución</option></select></div>
+</div>
+<label>Fotografía del producto (opcional)</label><input id="photo" type="file" accept="image/*"><img id="preview" class="photo hidden" alt="Vista previa del producto">
+<button class="btn" id="generate">✨ Generar 10 guiones</button>
+<div id="results"></div>
+</div>
+</section>
+<section id="publicar" class="pane hidden">
+<div class="card"><h2>Títulos y hashtags</h2><label>Producto</label><input id="pubProduct" placeholder="Nombre del producto"><label>¿Qué quieres destacar?</label><textarea id="pubDetails" placeholder="Beneficio principal o uso del producto"></textarea><button class="btn" id="makePost">Crear ideas</button><div id="postResults"></div></div>
+</section>
+<section id="biblioteca" class="pane hidden">
+<div class="card"><h2>Tu biblioteca</h2><p class="hint">Los guiones guardados quedan en este dispositivo y navegador.</p><div id="library"></div><button class="btn secondary" id="export">Exportar biblioteca (.json)</button></div>
+</section>
+<footer>THANATOR AI · Tus ideas, tu contenido, tu decisión.</footer>
+</main>
+<script src="app.js"></script>
+</body></html>
